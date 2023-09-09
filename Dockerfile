@@ -16,6 +16,5 @@ EXPOSE 8080
 COPY . /app
 
 # configure the container to run in an executed manner
-ENTRYPOINT [ "python" ]
 
-CMD ["gunicorn", "-w", "4", "app:app"]
+ENTRYPOINT ["python", "-m", "gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:8080"]
