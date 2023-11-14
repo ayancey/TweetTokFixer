@@ -17,4 +17,6 @@ COPY . /app
 
 # configure the container to run in an executed manner
 
-ENTRYPOINT ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:8080"]
+ENTRYPOINT ["python", "discord_bot.py"]
+
+#ENTRYPOINT ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:8080"]
