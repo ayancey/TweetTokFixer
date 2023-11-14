@@ -25,6 +25,8 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    links_found = False
+
     for link in extractor.gen_urls(message.content):
         # Skip it if embed disabled
         link_idx = message.content.index(link)
@@ -36,11 +38,14 @@ async def on_message(message):
 
         if parsed.netloc in ["www.tiktok.com"]:
             await message.channel.send(parsed._replace(netloc="vxtiktok.com").geturl(), reference=message)
+            links_found = True
         elif parsed.netloc in ["x.com", "twitter.com"]:
             await message.channel.send(parsed._replace(netloc="fxtwitter.com").geturl(), reference=message)
+            links_found = True
 
     # Remove link embed from user
-    await message.edit(suppress=True)
+    if links_found:
+        await message.edit(suppress=True)
 
 
 client.run("***REMOVED***")
