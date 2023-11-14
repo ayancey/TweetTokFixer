@@ -1,7 +1,5 @@
 version: "3.9"
 services:
-  web:
+  discord:
     build: .
-    ports:
-      - "127.0.0.1:42126:8080"
     restart: unless-stopped
