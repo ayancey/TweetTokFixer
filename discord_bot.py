@@ -28,10 +28,13 @@ async def on_message(message):
     links_found = False
 
     for link in extractor.gen_urls(message.content):
-        # Skip it if embed disabled
         link_idx = message.content.index(link)
         if link_idx > 0:
+            # Skip it if embed disabled
             if (message.content[link_idx - 1] == "<") and (message.content[link_idx + len(link)] == ">"):
+                continue
+            # Skip it if spoilered
+            if (message.content[link_idx - 1] == "|") and (message.content[link_idx + len(link)] == "|"):
                 continue
 
         parsed = urlparse(link)
