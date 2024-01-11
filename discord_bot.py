@@ -51,4 +51,4 @@ async def on_message(message):
         await message.edit(suppress=True)
 
 
-client.run("***REMOVED***")
+client.run("{PUT YOUR TOKEN HERE}")
